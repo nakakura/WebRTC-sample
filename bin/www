@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+var debug = require('debug')('rtcsample');
+var app = require('../app');
+var WebSocketServer = require('ws').Server
+    , wss = new WebSocketServer({port: 9001});
+
+app.set('port', process.env.PORT || 3000);
+
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});
+
+var fstSock, sndSock;
+var flag = false;
+
+wss.on('connection', function(ws) {
+    if(flag) sndSock = ws;
+    else fstSock = ws;
+    flag = true;
+
+    // message relay between two sockets.
+    ws.on("message", function(data){
+        if(ws == sndSock) fstSock.send(data);
+        else sndSock.send(data);
+    });
+});

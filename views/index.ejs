@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebRTC iOS SDK(as romo)</title>
+    <script src="./javascripts/jquery.js"></script>
+    <script src="./javascripts/WebSockManager.js"></script>
+    <script src="./javascripts/WebRtc.js"></script>
+</head>
+<body>
+<h3>Active Romos</h3>
+<div id="list"></div>
+<script>
+    window.onload = function(){
+        console.log($("#connect"));
+        var pc_config = {"iceServers":[
+            {"url": "stun:stun.skyway.io:3478"}
+        ],optional: []};
+
+        var constraints = {mandatory: {OfferToReceiveAudio: true, OfferToReceiveVideo: true }};
+        var websockManager = new WebRTCSample.WebSockManager("ws://localhost:9001/");
+        var webRtc = new WebRTCSample.WebRTCConnector(websockManager, constraints, pc_config);
+
+
+        $("#connect").on("click", function(){
+            webRtc.startConnecting();
+            console.log("click");
+        });
+    };
+</script>
+<button id="connect">connect</button>
+<video id="remote-video" autoplay style="width: 600px; height: 450px; border: 1px solid black;"></video>
+<video id="local-video" autoplay style="width: 200px; height: 150px; border: 1px solid black;"></video>
+</body>
+</html>
