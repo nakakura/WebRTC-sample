@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/public/javascripts/WebSockManager.js" />
+        <item url="file://$PROJECT_DIR$/public/javascripts/WebRtc.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/public/javascripts/WebSockManager.js" />
+      <root url="file://$PROJECT_DIR$/public/javascripts/WebRtc.js" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
