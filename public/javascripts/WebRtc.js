@@ -72,9 +72,9 @@ var WebRTCSample;
             this._pcConfig = pcConfig;
 
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-            RTCPeerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
-            RTCSessionDescription = window.RTCSessionDescription || window.webkitRTCSessionDescription || window.mozRTCSessionDescription;
-            RTCIceCandidate = window.RTCIceCandidate || window.webkitRTCIceCandidate || window.mozRTCIceCandidate;
+            window.RTCPeerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
+            window.RTCSessionDescription = window.RTCSessionDescription || window.webkitRTCSessionDescription || window.mozRTCSessionDescription;
+            window.RTCIceCandidate = window.RTCIceCandidate || window.webkitRTCIceCandidate || window.mozRTCIceCandidate;
             navigator.getUserMedia({ audio: true, video: true }, this._onSuccessGetUserMedia, function (error) {
                 console.log(error.name + ":" + error.message);
             });

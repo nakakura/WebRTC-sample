@@ -11,7 +11,6 @@
 <div id="list"></div>
 <script>
     window.onload = function(){
-        console.log($("#connect"));
         var pc_config = {"iceServers":[
             {"url": "stun:stun.skyway.io:3478"}
         ],optional: []};
@@ -19,7 +18,6 @@
         var constraints = {mandatory: {OfferToReceiveAudio: true, OfferToReceiveVideo: true }};
         var websockManager = new WebRTCSample.WebSockManager("ws://localhost:9001/");
         var webRtc = new WebRTCSample.WebRTCConnector(websockManager, constraints, pc_config);
-
 
         $("#connect").on("click", function(){
             webRtc.startConnecting();

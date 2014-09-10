@@ -19,12 +19,12 @@ module WebRTCSample{
             this._socket.onClose = this._onClose;
             this._mediaConstraits = mediaConstraints;
             this._pcConfig = pcConfig;
-            
-            (<Navigator>navigator).getUserMedia = (<Navigator>navigator).getUserMedia || (<Navigator>navigator).webkitGetUserMedia || (<Navigator>navigator).mozGetUserMedia;
-            RTCPeerConnection = (<any>window).webkitRTCPeerConnection || (<any>window).mozRTCPeerConnection;
-            RTCSessionDescription = (<any>window).RTCSessionDescription || (<any>window).webkitRTCSessionDescription || (<any>window).mozRTCSessionDescription;
-            RTCIceCandidate = (<any>window).RTCIceCandidate || (<any>window).webkitRTCIceCandidate || (<any>window).mozRTCIceCandidate;
-            (<Navigator>navigator).getUserMedia(
+
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+            window.RTCPeerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
+            window.RTCSessionDescription = window.RTCSessionDescription || window.webkitRTCSessionDescription || window.mozRTCSessionDescription;
+            window.RTCIceCandidate = window.RTCIceCandidate || window.webkitRTCIceCandidate || window.mozRTCIceCandidate;
+            navigator.getUserMedia(
                 { audio: true, video: true },
                 this._onSuccessGetUserMedia,
                 (error:Error)=> {
@@ -36,7 +36,7 @@ module WebRTCSample{
         private _onSuccessGetUserMedia = (stream: any)=>{
             try {
                 this._localStream = stream;
-                this._localVideo.src = (<any>window).URL.createObjectURL(stream);
+                this._localVideo.src = window.URL.createObjectURL(stream);
                 this._localVideo.play();
 
                 this._peer = new RTCPeerConnection(this._pcConfig);
@@ -65,7 +65,7 @@ module WebRTCSample{
 
             // when remote adds a stream, hand it on to the local video element
             var onRemoteStreamAdded = (event)=>{
-                this._remoteVideo.src = (<any>window).URL.createObjectURL(event.stream);
+                this._remoteVideo.src = window.URL.createObjectURL(event.stream);
             };
 
             // when remote removes a stream, remove it from the local video element
